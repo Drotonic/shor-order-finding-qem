@@ -44,7 +44,25 @@ At `p2=0.01%`, the saved shot records gave the following results under the setti
 
 These values were read from the final all-zero-ridge `primary_rate_results.csv` and checked against the saved parent distributions. Reconstructing the three saved count inputs with `portable_c1` reproduced all four models' vectors and TVD/gap values exactly in the tested environment. The [source record](docs/REPRODUCIBILITY.md#recorded-results) identifies the original files and hashes.
 
-The original shot archives and bootstrap caches are stored separately from this code repository. The table describes that recorded run; newly generated shots are another sample of the specified stochastic model.
+The [v0.1.2 data release](https://github.com/Drotonic/shor-order-finding-qem/releases/tag/v0.1.2) provides the original simulator measurement records, analysis-ready count parents, and completed bootstrap caches. The table describes that recorded run; newly generated shots are another sample of the specified stochastic model.
+
+## Download the recorded data and reproduce the tables
+
+The release includes the 37-condition N119 shot data, all 40 TVD/gap bootstrap caches (37 equal-shot and three gate-matched), all 37 success-probability caches, and the 33 completed reset-readout records. Each bootstrap condition has 10,000 replicates and its complete batch checkpoints. Download and extract the seven ZIP assets into a common directory:
+
+```bash
+gh release download v0.1.2 --repo Drotonic/shor-order-finding-qem --pattern 'shor-*.zip' --pattern SHA256SUMS.txt --pattern dataset_assets.json --dir downloads
+(cd downloads && sha256sum -c SHA256SUMS.txt)
+for archive in downloads/shor-*.zip; do unzip -n "$archive" -d data; done
+```
+
+After installing the package below, reduce the saved replicate arrays directly to the reported tables:
+
+```bash
+python scripts/reproduce_published_results.py --data-root data/shor-paper-data --output-dir results/recorded-tables
+```
+
+The [data guide](docs/DATA_AVAILABILITY.md) maps each archive to its contents, explains the checksum manifests, and connects the recorded counts to fresh reconstruction and resampling. These records come from the study's stochastic shot simulator, not a QPU hardware run.
 
 ## Install
 
@@ -107,4 +125,4 @@ git rev-parse HEAD
 
 `SOURCE_MANIFEST.csv` records the original source hashes, and `RELEASE_MANIFEST.json` records the current package contents. See [Validation](docs/VALIDATION.md) for the checks performed.
 
-Repository: <https://github.com/Drotonic/shor-order-finding-qem> — publicly accessible, code version `v0.1.1`. [License selection](docs/LICENSE_STATUS.txt) is pending.
+Repository: <https://github.com/Drotonic/shor-order-finding-qem> — publicly accessible, code and data release `v0.1.2`. [License selection](docs/LICENSE_STATUS.txt) is pending.

@@ -68,4 +68,6 @@ The strict S6 rule forms exactly one rational candidate for outcome `y`: `Fracti
 
 ## File provenance
 
-The count export records the basenames and SHA256 hashes of its ten input files. Each analysis command then writes an input/output `manifest.json`. Together these records identify the shot inputs, reconstructed distributions, and bootstrap outputs for the run. The original study records are maintained separately from the source repository.
+The count export records the basenames and SHA256 hashes of its ten input files. Each analysis command then writes an input/output `manifest.json`. Together these records identify the shot inputs, reconstructed distributions, and bootstrap outputs for the run. The [public data release](DATA_AVAILABILITY.md) supplies the original study records and final caches as downloadable archives alongside the source repository.
+
+The published historical scalar caches retain their original axes and labels; these are distinct from the portable output layout described above. Use `scripts/reproduce_published_results.py` to read the archived labels and regenerate the published point estimates and percentile tables. The final scalar and parent NPZ files retain their original bytes. Metadata-sanitized batch checkpoints are paired with original/public SHA256 mappings in `bootstrap/publication_manifest.json`.

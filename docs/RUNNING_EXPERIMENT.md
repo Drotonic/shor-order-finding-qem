@@ -2,6 +2,8 @@
 
 Run the commands below from the repository root after installation. Steps 1–2 use the NVIDIA simulation environment; steps 3–5 run on CPU. Use a new run directory. The GPU commands generate trajectories and take the full simulation time. `folding_pattern_simulator` and `followup_cluster run-shard` accept `--dry-run` for plan inspection; the Raw `simulator` command starts its computation directly.
 
+To work directly with the study's recorded inputs, [download the public data release](DATA_AVAILABILITY.md). Its `measurements/counts/` files enter the reconstruction stage, and `scripts/reproduce_published_results.py` reduces the already completed bootstrap caches to the recorded tables without rerunning the simulation or bootstrap.
+
 ## 1. Compile the three circuits
 
 ```bash

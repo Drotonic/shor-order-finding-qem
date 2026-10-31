@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": "https://github.com/Drotonic/shor-order-finding-qem",
-  "visibility_at_release": "private",
+  "visibility_at_release": "public",
   "repository_visibility_at_manifest_build": "public",
-  "scope": "source-only N119 study code; no measurement data, figures, credentials or active campaign state",
+  "scope": "N119 study source and data-access documentation; measurement data and bootstrap caches are separately checksummed v0.1.2 release assets; no credentials or active campaign state",
   "license_status": "pending author decision; no license grant inferred",
   "scientific_profile": {
     "reconstruction": "C1",
@@ -15,13 +15,13 @@
     "primary_budget": "equal circuit shots"
   },
   "source_snapshot_copies": 103,
-  "payload_file_count": 122,
-  "payload_bytes": 2025952,
+  "payload_file_count": 125,
+  "payload_bytes": 2072950,
   "validation_report": "docs/VALIDATION.md",
   "inventory_notes": [
     "Payload hashes cover the source, configuration, tests, and documentation listed below.",
     "The inventory excludes this manifest itself and .git metadata.",
-    "Version v0.1.1 identifies the workflow documentation and native-count exporter update."
+    "Version v0.1.2 adds public measurement/bootstrap data assets and a reader that reproduces the recorded summary tables."
   ],
   "files": [
     {
@@ -31,8 +31,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7654,
-      "sha256": "de810bbcaf4ab60c1a3a59b1ae4c693dd803698357e2782dc450bffd2af733ec"
+      "bytes": 8990,
+      "sha256": "733556d05401d132d0ac027b2bf88ad307483ed0d905c2f39c5ceccede279ba0"
     },
     {
       "path": "SOURCE_MANIFEST.csv",
@@ -446,13 +446,18 @@
     },
     {
       "path": "docs/CODE_AVAILABILITY.tex",
-      "bytes": 395,
-      "sha256": "751274778c345c08938451f840f685a75d89d925f4413710a2b4805ce515ca5e"
+      "bytes": 730,
+      "sha256": "175f919e6d36d62da8e6db326dc54724db281f8dec0c7c25bda7a7e32cf17294"
+    },
+    {
+      "path": "docs/DATA_AVAILABILITY.md",
+      "bytes": 6232,
+      "sha256": "2f4abf49fc4a05f05b0859770984831242dac40f6296caedcac964b1b76f71a1"
     },
     {
       "path": "docs/DATA_FORMAT.md",
-      "bytes": 7389,
-      "sha256": "8e4c949659d8b27251759f1db4772e891449e19e4cf52bb2c99dfdace79d4da8"
+      "bytes": 7949,
+      "sha256": "ce366917ec8ed790f42a3e9a19468a4c0b6d2edf7e9db3471745b066a827156c"
     },
     {
       "path": "docs/LICENSE_STATUS.txt",
@@ -461,18 +466,18 @@
     },
     {
       "path": "docs/REPRODUCIBILITY.md",
-      "bytes": 10744,
-      "sha256": "34582faf90a96bc6c11ed3c5eb47cde057a9dc33162eed3e7c7dc77c171a7e16"
+      "bytes": 11291,
+      "sha256": "d1dfff246f0f4fd2c78ee32577244bd1c2c7c64304217447de63b085a76c7273"
     },
     {
       "path": "docs/RUNNING_EXPERIMENT.md",
-      "bytes": 7356,
-      "sha256": "cb6a54b1fb98ef0f0513c5804d41f8ea75dcb20e6fd5851cdb9f92500b777198"
+      "bytes": 7693,
+      "sha256": "8bf1961bc8913278b3012efac147705e789ed1227fe56a75f186666f9793bd48"
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 4653,
-      "sha256": "87e290bbd71cac0e9264ebb49b5397df6b367ed190af04d2f1c03e8b27102644"
+      "bytes": 6993,
+      "sha256": "8b2327ba551822306b60181f970dbe92f4e2c31c3fb623d26793a45bf78184d7"
     },
     {
       "path": "environments/environment-a100-driver.yml",
@@ -487,7 +492,7 @@
     {
       "path": "pyproject.toml",
       "bytes": 758,
-      "sha256": "a772f81d7086f40398062ac0090badb13ac0c220277a858f7ab50244268b88a0"
+      "sha256": "52a22fea5e96f16ca7770ce711eb5232a0655ff64eb43691beed96003640da30"
     },
     {
       "path": "requirements-reproduction.txt",
@@ -508,6 +513,11 @@
       "path": "scripts/pack_simulator_counts.py",
       "bytes": 12832,
       "sha256": "0d1c0f63ac3c0b2e85118b0b4f921e929495dad19aa5c37c04297b58cbb0aa2c"
+    },
+    {
+      "path": "scripts/reproduce_published_results.py",
+      "bytes": 26026,
+      "sha256": "ed5f886b07117bb4abbd0b76017da1a1e247b51bd7cd2b65dd70a42a87a2016c"
     },
     {
       "path": "scripts/verify_release.py",
@@ -633,6 +643,11 @@
       "path": "tests/test_portable_c1.py",
       "bytes": 14656,
       "sha256": "26e8782512e100b965c060ada98c58a46790959039921b898d38324520a8e160"
+    },
+    {
+      "path": "tests/test_published_results.py",
+      "bytes": 9285,
+      "sha256": "541bde366e6fac034fdb35ec82fe609731514607605f815e401d6f4e575630c3"
     }
   ]
 }
