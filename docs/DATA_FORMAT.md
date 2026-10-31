@@ -1,6 +1,6 @@
 # Count inputs and pairing
 
-Actual shot records and count archives are not distributed. The portable CPU workflow uses a non-pickle NumPy `.npz` count archive, representing one instance and one physical error rate. Synthetic inputs are examples only; they are not the study's measurements.
+The shot simulator writes native outcome/count records. `scripts/pack_simulator_counts.py` assembles those records into a NumPy `.npz` input for the CPU reconstruction and bootstrap, representing one instance and one gate-error rate. The [execution guide](RUNNING_EXPERIMENT.md) shows the full filename and command sequence.
 
 ## Required parent blocks
 
@@ -21,9 +21,9 @@ The effective scales for the retained template are:
 1.800225415610031, 2.199774584389969, 2.5998872921949845, 3.0
 ```
 
-No personal machine paths or Python objects are needed in this portable archive. Loading a portable count archive must not require `allow_pickle=True`. Preserve instance identifiers, physical-rate conventions, seed and generation provenance outside the counts as well; a histogram alone cannot establish where the shots came from.
+The input loads with `allow_pickle=False`. The native-record exporter additionally records instance identifiers, the error rate, source file hashes, and the retained shot-block boundaries in `provenance_json` and metadata fields.
 
-All five listed keys are required; unrelated metadata keys are ignored. `effective_lambdas` must contain finite strictly increasing real values beginning at `1`. All arrays must agree on `D`, and every count parent must have exactly the stated total. The small synthetic generator uses a toy dimension and nominal numerical scales as its toy effective scales; it does not claim to simulate the retained circuit or integer-folding design.
+All five listed keys are required; unrelated metadata keys are ignored. `effective_lambdas` must contain finite strictly increasing real values beginning at `1`. All arrays must agree on `D`, and every count parent must have exactly the stated total. The synthetic demonstration uses a four-bit toy distribution and treats its eight scale values as exact.
 
 ## Why the parent blocks must remain separate
 
@@ -36,7 +36,7 @@ Reset160 = (reset_scale_counts[0] + reset_extension_counts) / 160000
 
 ZNE is fitted to the normalized eight Reset scale rows. For a paired bootstrap replicate, the very same resampled `reset_scale_counts[0]` contributes both to Reset160 and to every ZNE fit. Its 140,000-shot extension is resampled separately. Raw initial and extension blocks are also drawn from their separate parents.
 
-This shared-parent dependence is necessary for the Reset/ZNE paired differences. A merged Reset160 histogram loses the original 20k/140k parent decomposition. Arbitrarily splitting that histogram, or resampling Reset160 independently of the scale rows, does not recover the historical pairing. The same caution applies to reconstructing the original Raw parents from merged Raw160 counts. All four parent-block types are required by the portable paired workflow.
+The native baseline NPZs retain the ordered outcomes and `source_ranges_json`, so the exporter can recover the actual initial and extension blocks. It also checks that the initial Reset outcomes equal the scale-one outcomes. This preserves the Reset/ZNE pairing; a histogram without those shot-block records is not an input to this exporter.
 
 Each scale row is one multinomial parent; no cross-scale shot correspondence is inferred from equal row lengths. The pairing is shared reuse of the unfolded Reset draw and shared scale draws across fitted models, not an invented shot-ID alignment across all scales.
 
@@ -48,11 +48,11 @@ The full outcome dimension remains `D`, even though fitting and projection use o
 
 Evaluation references must correspond to the same `N`, base, phase-bit count, and outcome encoding as the counts. The ideal finite-resolution QPE distribution and peak groups are used for evaluation only, not for fitting or rate selection. Do not pass an ideal distribution as if it were measured counts.
 
-## Historical simulator records
+## Native simulator records
 
-The retained simulator also writes shot-level/output-count records and metadata for newly generated runs. Those records are not interchangeable with the portable four-parent input archive: preserve per-rate/per-scale identities, shot totals, provenance, and the initial/extension distinction when constructing a count input.
+The eight Reset files contain `rates`, `lambdas`, `outcomes`, `counts`, and `folded_gate_counts_by_round`. Each merged baseline NPZ contains `outcomes`, `counts`, `mode`, `rate`, and `source_ranges_json`. The exporter checks instance and circuit metadata, count/outcome agreement, and the preserved 20k/140k boundaries before assembling the analysis input.
 
-Legacy scripts may consume pickles or cached archives with other schemas. They are historical interfaces, not the portable `.npz` input contract. Never load an untrusted pickle, and do not infer a legacy archive's profile solely from its filename. The original data and cached result files required by the archived manuscript replay are excluded from this source release.
+Effective scales are calculated as `1 + 2*sum(folded_gate_counts_by_round)/two_qubit_gate_count`. The exporter accepts the native N=119 matched-template layout, including the augmented r=6 scale directory. It reads NPZ files only. The Raw generator's original bitstring pickle is consumed by the baseline merge stage, which produces the ordered baseline NPZ used here.
 
 ## Portable outputs and decoder input
 
@@ -66,6 +66,6 @@ The `decode` subcommand accepts a non-pickle NPZ containing `probabilities` with
 
 The strict S6 rule forms exactly one rational candidate for outcome `y`: `Fraction(y, 2**bits).limit_denominator(N)`. A zero numerator or failure of `pow(a, q, N) == 1` is rejected. A verified denominator `q` is retained as-is: the decoder does not scan all convergents, test denominator multiples, factor-reduce `q`, or combine multiple shots. The supplied true order enters only the final evaluation `q == order`, not candidate selection.
 
-## Availability boundary
+## File provenance
 
-Source hashes and release inventories describe code, not measurement availability. Synthetic counts permit interface and algorithm checks only. Recreating manuscript numerical results requires the admissible original parent records and their provenance; no data DOI, public raw-data deposit, or access arrangement is asserted by this repository.
+The count export records the basenames and SHA256 hashes of its ten input files. Each analysis command then writes an input/output `manifest.json`. Together these records identify the shot inputs, reconstructed distributions, and bootstrap outputs for the run. The original study records are maintained separately from the source repository.

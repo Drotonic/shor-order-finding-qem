@@ -1,38 +1,54 @@
 # Quantum order-finding error mitigation
 
-Source code accompanying the study **“Mitigating errors of a polynomial-depth quantum circuit: quantum order-finding.”**
+Code for **“Mitigating errors of a polynomial-depth quantum circuit: quantum order-finding.”**
 
-Repository: <https://github.com/Drotonic/shor-order-finding-qem>. This repository is currently **private**. It has no archival DOI, and this source release does not imply publication or acceptance of the manuscript. License selection is pending; see [license status](docs/LICENSE_STATUS.txt).
+The calculation starts with noisy order-finding shots, reconstructs the output distribution using arithmetic-register Reset and zero-noise extrapolation (ZNE), and evaluates TVD, the normalized peak-background gap, and exact-order recovery.
 
-## Scope
+## From shots to results
 
-The study compares Raw, workspace Reset, and Reset plus zero-noise extrapolation (ZNE) for three order-finding instances with `N = 119`:
-
-| Base `a` | Multiplicative order `r` | Configuration |
+| Step | Code | Input → output |
 | --- | --- | --- |
-| 50 | 2 | `configs/n119_a50_matched.json` |
-| 13 | 4 | `configs/n119_a13_matched.json` |
-| 16 | 6 | `configs/n119_a16_matched.json` |
+| 1. Compile the arithmetic circuit | `scripts/build_matched_operation_caches.py` | Instance configurations → compiled operation caches |
+| 2. Generate shots | `shor_qem.simulator`, `shor_qem.folding_pattern_simulator`, `shor_qem.followup_cluster` | Circuits, gate-error rates, and noise scales → Raw/Reset shot records and counts |
+| 3. Assemble the analysis input | `scripts/pack_simulator_counts.py` | Eight Reset scale records and the two baseline records → `counts.npz`, retaining the original 20k/140k blocks |
+| 4. Reconstruct and evaluate | `shor_qem.portable_c1 reconstruct` | `counts.npz` → four ZNE distributions, TVD, and normalized gap |
+| 5. Resample and summarize | `shor_qem.portable_c1 bootstrap` | The same count parents → paired bootstrap draws and percentile intervals |
+| 6. Evaluate order recovery | `shor_qem.portable_c1 decode` | Reconstructed distributions → strict single-candidate exact-order probabilities |
 
-The retained 17-qubit compiled template has 14 phase-estimation rounds and 49,686 noisy two-qubit gate locations (3,549 per round). Configuration `rates` are the total nonidentity Pauli-fault probabilities `p2`, not the depolarizing-channel mixing parameter `ε`; their convention is `p2 = 15 ε / 16`. Shot-wise random folding uses eight nominal scales: `1, 1.1, 1.2, 1.4, 1.8, 2.2, 2.6, 3`; analysis uses the effective scales after integer fold rounding.
+The [complete execution guide](docs/RUNNING_EXPERIMENT.md) connects these commands and filenames, including generation of the Raw and Reset baseline extensions. The [input-format reference](docs/DATA_FORMAT.md) describes the arrays at each stage.
 
-The manuscript-facing C1 estimator fits and projects only on the union of observed Reset outcomes. Its four models use mean-one `effective_lambda**(-2)` weights and zero ridge penalties. The exponential models retain the `1 / 16384` offset and select rates on the shared 200-point single-rate grid or 19,900 dual-rate pairs without ideal-distribution labels. See [reproducibility notes](docs/REPRODUCIBILITY.md) for the exact profile and limitations.
+## Study settings
 
-The primary comparison is **equal circuit shots**, not equal noisy-gate executions: Raw and Reset each use 160,000 shots; ZNE uses 20,000 shots at each of eight scales. Folding increases the gate-execution cost of ZNE.
+The three instances are `N=119`, `(a,r)=(50,2),(13,4),(16,6)`. Each uses the retained 17-qubit arithmetic template, 14 measured phase bits, and 49,686 noisy two-qubit gate locations before folding.
 
-## Repository layout
+- Nominal noise scales: `1, 1.1, 1.2, 1.4, 1.8, 2.2, 2.6, 3`. Fits use the effective scales after integer fold rounding.
+- Shots: 20,000 at each Reset scale; Raw and unfolded Reset each total 160,000 for the primary comparison.
+- Reconstruction: C1 observed-support fitting and simplex projection, inverse-square scale weights normalized to mean one, and **ridge=0 for all four models**.
+- Exponential fits: fixed offset `1/16384`, 200 single-rate candidates, and 19,900 dual-rate pairs.
+- Configuration `rates` store the nonidentity two-qubit Pauli-fault probability `p2`. For example, `0.0001` means `p2=0.01%`.
 
-- `src/shor_qem/`: importable simulator, estimation, metric, and portable CPU-analysis code.
-- `configs/`: the three matched `N = 119` configurations, the augmented rate grid for `a = 16`, and the A100 follow-up specification (`A100` names a GPU family, not base `a = 100`).
-- `scripts/`: operation-cache construction and synthetic CPU-demo input generation.
-- `tests/`: checks for the distributed code.
-- `archive/paper-option2/`: preserved analysis, original package source, Appendix D experiment code, and Supplement S6 export/verification source. This is historical provenance, not a second supported installation.
-- `docs/`: reproducibility scope, input format, code-availability wording, and license status.
-- `SOURCE_MANIFEST.csv` and `RELEASE_MANIFEST.json`: source provenance and release inventory.
+The exact grids, effective scales, and resampling conventions are in [Calculation settings and recorded outputs](docs/REPRODUCIBILITY.md).
 
-## CPU installation
+## Recorded result example
 
-Use Python 3.10 or newer in a fresh virtual environment, from the repository root:
+At `p2=0.01%`, the saved shot records gave the following results under the settings above. Each entry is **(TVD, normalized peak-background gap)**; lower TVD and higher gap are better.
+
+| Route | `a=50, r=2` | `a=13, r=4` | `a=16, r=6` |
+| --- | --- | --- | --- |
+| Raw, 160k | (0.916325, 0.062338) | (0.897319, 0.075225) | (0.915268, 0.034723) |
+| Reset, 160k | (0.810413, 0.149188) | (0.784963, 0.167625) | (0.873115, 0.053561) |
+| Linear ZNE | (0.729672, 0.212796) | (0.694815, 0.233193) | (0.831447, 0.077574) |
+| Quadratic ZNE | (0.539951, 0.374465) | (0.496102, 0.394938) | (0.725293, 0.153715) |
+| Single-exponential ZNE | (0.355753, 0.526106) | (0.340198, 0.525216) | (0.582272, 0.248730) |
+| Dual-exponential ZNE | (0.045278, 0.909444) | (0.071599, 0.849886) | (0.833333, 0.000000) |
+
+These values were read from the final all-zero-ridge `primary_rate_results.csv` and checked against the saved parent distributions. Reconstructing the three saved count inputs with `portable_c1` reproduced all four models' vectors and TVD/gap values exactly in the tested environment. The [source record](docs/REPRODUCIBILITY.md#recorded-results) identifies the original files and hashes.
+
+The original shot archives and bootstrap caches are stored separately from this code repository. The table describes that recorded run; newly generated shots are another sample of the specified stochastic model.
+
+## Install
+
+From a checkout, use Python 3.10+ in a virtual environment:
 
 ```bash
 python -m venv .venv
@@ -40,59 +56,55 @@ source .venv/bin/activate
 python -m pip install -e '.[test]'
 ```
 
-The base installation uses NumPy and Matplotlib and does not require a GPU. The portable C1 workflow accepts count arrays, performs a fresh equal-shot paired bootstrap, and is independent of the original machine layout. Its synthetic demonstration is not a replay of the paper's measurements or historical random draws. The input contract is documented in [DATA_FORMAT.md](docs/DATA_FORMAT.md).
+CPU analysis uses NumPy and Matplotlib. For NVIDIA shot simulation, additionally install `.[gpu-cuda12]` or `.[gpu-cuda13]` to match the CUDA environment. Choose one CuPy CUDA distribution.
 
-Run the CPU tests:
+## Run the analysis
+
+After assembling `counts.npz` with step 3 of the execution guide, the following commands analyze the `a=13, r=4` example:
 
 ```bash
-python -m pytest tests -q
+python -m shor_qem.portable_c1 reconstruct --input results/n119_a13_p0p0001/counts.npz --order 4 --output-dir results/n119_a13_p0p0001/point
+python -m shor_qem.portable_c1 bootstrap --input results/n119_a13_p0p0001/counts.npz --order 4 --replicates 10000 --seed 20260722 --batch-size 25 --confidence .95 --output-dir results/n119_a13_p0p0001/bootstrap
+python -m shor_qem.portable_c1 decode --input results/n119_a13_p0p0001/point/parent_estimates.npz --N 119 --a 13 --order 4 --bits 14 --output-dir results/n119_a13_p0p0001/order
 ```
 
-For a small end-to-end demonstration, use a new `demo` directory:
+Read the outputs as follows:
+
+| File | Contents |
+| --- | --- |
+| `point/points.json` | Original-count TVD and gap for Raw, Reset, and the four ZNE models |
+| `point/parent_estimates.npz` | Pre/postprojection vectors, selected exponential rates, and evaluation arrays |
+| `bootstrap/intervals.json` | Percentile intervals for individual metrics and paired improvements over Reset160k |
+| `bootstrap/scalar_bootstrap_draws.npz` | Replicate-level metrics and rate selections |
+| `order/decoder.json` | Exact-order probability for each distribution |
+
+The bootstrap reselects observed support and exponential rates in every replicate. Its four models share the same resampled counts, and Reset160k shares its initial 20,000 shots with the scale-one ZNE input.
+
+## Quick CPU example
+
+To try the file flow before running the GPU simulation, use this small **synthetic four-bit example**:
 
 ```bash
 mkdir demo
 python scripts/make_synthetic_counts.py --output demo/counts.npz --bits 4 --order 4 --seed 1
 python -m shor_qem.portable_c1 reconstruct --input demo/counts.npz --order 4 --output-dir demo/point
 python -m shor_qem.portable_c1 bootstrap --input demo/counts.npz --order 4 --replicates 5 --seed 20260722 --batch-size 25 --confidence .95 --output-dir demo/bootstrap
-python -m shor_qem.portable_c1 decode --input demo/point/parent_estimates.npz --N 119 --a 13 --order 4 --bits 4 --output-dir demo/decode
+python -m shor_qem.portable_c1 decode --input demo/point/parent_estimates.npz --N 119 --a 13 --order 4 --bits 4 --output-dir demo/order
 ```
 
-This toy example uses `D = 16`, not the study's `D = 16384`, and its five bootstrap replicates are only a smoke test, not an uncertainty estimate suitable for reporting. Outputs include `points.json`, `parent_estimates.npz`, `manifest.json` with input/output hashes, and (for bootstrap) `intervals.json` and `scalar_bootstrap_draws.npz`. Existing output files/directories are protected; choose new destinations for another run. See [DATA_FORMAT.md](docs/DATA_FORMAT.md) for decoder inputs and output conventions.
+The five-replicate example checks the interface; the study analysis uses 14 bits and 10,000 replicates. Choose new output destinations for each run.
 
-**Use `shor_qem.portable_c1` for the final all-zero-ridge C1 profile.** The retained legacy `bootstrap_analysis` interface defaults to a different, dense-support/ridge profile; running that legacy CLI is not a reproduction of the final C1 analysis.
+## Source organization and checks
 
-## GPU simulation
-
-GPU generation is optional and substantially more expensive than the CPU demonstration. The `gpu-cuda12` extra installs Qiskit and the CUDA 12 CuPy package:
+`src/shor_qem/` contains the simulator and analysis modules; `configs/` contains the instance and follow-up specifications. `archive/paper-option2/` preserves the original production scripts, including Appendix D reset-readout analysis and the S6 order-recovery export. The [execution guide](docs/RUNNING_EXPERIMENT.md) uses the packaged interfaces; [Calculation settings and recorded outputs](docs/REPRODUCIBILITY.md) maps the production scripts to their recorded results.
 
 ```bash
-python -m pip install -e '.[gpu-cuda12]'
-python scripts/build_matched_operation_caches.py
+python -m pytest -q
+python scripts/verify_source_snapshot.py
+python scripts/verify_release.py
+git rev-parse HEAD
 ```
 
-Compiled-operation pickle files are not distributed; the builder reconstructs them and checks the configured gate counts. Compilation is version-sensitive: matching gate counts alone does not establish byte-for-byte circuit or shot replay. For CUDA 13, install `.[gpu-cuda13]` **instead of** `.[gpu-cuda12]`; do not install both CuPy CUDA distributions in one environment.
+`SOURCE_MANIFEST.csv` records the original source hashes, and `RELEASE_MANIFEST.json` records the current package contents. See [Validation](docs/VALIDATION.md) for the checks performed.
 
-The original source includes more than one simulation profile. For the matched shot-wise folding experiment, use `shor_qem.folding_pattern_simulator` with the `*_matched.json` configurations, not a historical fixed-pattern analysis profile. Consult each module's command-line help and the [reproducibility notes](docs/REPRODUCIBILITY.md) before a production run.
-
-After building the caches, inspect a three-instance shot-wise plan without starting trajectories:
-
-```bash
-python -m shor_qem.folding_pattern_simulator --configs configs/n119_a13_matched.json configs/n119_a50_matched.json configs/n119_a16_matched.json --shots 20000 --gpu-ids 0 --output-dir simulator_runs/new_matched --dry-run
-```
-
-Removing `--dry-run` starts the expensive GPU computation. The configured output is the eight-scale Reset campaign; it does not by itself supply the separate Raw20k, Raw140k, and Reset140k parents required for the portable equal-shot bootstrap. The retained `followup_cluster` implementation and A100 follow-up specification document the additional parent-generation workflow. No new GPU trajectories were launched to validate this release.
-
-## Data and historical replay
-
-This is a **code-only** repository. It does not distribute actual shot records, manuscript or figure assets, result tables, bootstrap checkpoints, or compiled-operation pickles. A synthetic CPU run can demonstrate the analysis but cannot regenerate the paper's numerical claims.
-
-Exact historical replay additionally requires the admissible original parent blocks, their provenance, and the original pinned analysis/cache dependencies. In particular, paired intervals require separate Reset scale counts, the Reset extension, Raw initial counts, and the Raw extension. Merged 160,000-shot counts alone are insufficient to reconstruct that pairing. See [DATA_FORMAT.md](docs/DATA_FORMAT.md).
-
-The reported Appendix D results cover the 20,000-shot conditions Raw and `0%, 0.01%, 0.1%, 0.2%, 0.3%, 0.4%, 0.5%` reset/readout error. The 1% condition was unfinished and the 2% condition was not run; neither is a reported result in this release. Preserved configurations include additional execution options, which are not evidence of completed results. Separate multi-modulus and other ongoing experiments are outside scope.
-
-## Version and reuse
-
-Record the exact checked-out revision with `git rev-parse HEAD` when reporting results. A mutable branch URL is not a code-version pin. The release manifest and source hashes describe the packaged source; they do not replace the final Git commit identifier or provide missing measurement data.
-
-No software license was found in the source provided for this release, and no new license has been inferred. Repository access is not a license grant. See [LICENSE_STATUS.txt](docs/LICENSE_STATUS.txt) before redistribution or reuse.
+Repository: <https://github.com/Drotonic/shor-order-finding-qem> — private review, version `v0.1.1`. [License selection](docs/LICENSE_STATUS.txt) is pending.

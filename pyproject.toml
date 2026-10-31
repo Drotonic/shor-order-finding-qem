@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "shor-order-finding-qem"
-version = "0.1.0"
+version = "0.1.1"
 description = "Arithmetic-register reset and distribution-level ZNE for quantum order finding"
 readme = "README.md"
 requires-python = ">=3.10"

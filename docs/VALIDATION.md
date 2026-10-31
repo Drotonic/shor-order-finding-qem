@@ -1,5 +1,19 @@
 # Release validation
 
+## v0.1.1: executable workflow and native-count export
+
+The workflow documentation now links native shot generation, count packing, C1 reconstruction, bootstrap, and order decoding. `scripts/pack_simulator_counts.py` supplies the native-NPZ conversion step.
+
+- The full CPU suite passed **87 tests**, including 35 native-export tests.
+- Packing the actual `N=119`, `p2=0.01%` records succeeded for all three study instances. All 30 input hashes matched the recorded parent manifests.
+- Exported Reset scale and extension frequencies, combined Raw160/Reset160 distributions, and effective scales matched the saved parent arrays exactly. All four direct routes' TVD and normalized-gap metrics matched exactly as well.
+- The exporter preserved the recorded initial 20k and extension140k boundaries and verified Reset scale-one shot identity. Actual-data checks wrote only temporary count packs; they used no new trajectories, fitting, or bootstrap.
+- The README example reports the recorded results from `primary_rate_results.csv`; its source hash is listed in [Recorded results](REPRODUCIBILITY.md#recorded-results).
+
+The original scientific modules and their 103 source-snapshot copies remain unchanged. The `v0.1.0` validation below records the reconstruction and analysis-interface checks.
+
+## v0.1.0: analysis interface
+
 The `v0.1.0` private-review code snapshot was checked on 2026-10-31. This is software validation, not a new physical experiment or a certification of statistical coverage.
 
 ## Checks performed
