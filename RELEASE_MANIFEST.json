@@ -1,0 +1,622 @@
+{
+  "schema_version": 1,
+  "version": "0.1.0",
+  "repository": "https://github.com/Drotonic/shor-order-finding-qem",
+  "visibility_at_release": "private",
+  "scope": "source-only N119 study code; no measurement data, figures, credentials or active campaign state",
+  "license_status": "pending author decision; no license grant inferred",
+  "scientific_profile": {
+    "reconstruction": "C1",
+    "weight_exponent": 2,
+    "weights": "mean-one",
+    "ridge_all_models": 0,
+    "exponential_offset": "1/D",
+    "primary_budget": "equal circuit shots"
+  },
+  "source_snapshot_copies": 103,
+  "payload_file_count": 119,
+  "payload_bytes": 1998155,
+  "validation_report": "docs/VALIDATION.md",
+  "limitations": [
+    "This manifest intentionally excludes itself and .git metadata.",
+    "Payload hashes do not provide missing measurement data or certify interval coverage.",
+    "See the actual v0.1.0 Git commit for the immutable source version."
+  ],
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 915,
+      "sha256": "f96ae5ccecf0d94a47e47ae9a40f5fba674e70c8f2708ca840eef6b888575037"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8286,
+      "sha256": "5df6330401ee03ff5c15e495c0f6d51c70aff31448e87e4db223ba87f579e090"
+    },
+    {
+      "path": "SOURCE_MANIFEST.csv",
+      "bytes": 24266,
+      "sha256": "67eb2683ee5307952e7838861579ac35b4fd6899ef0e86f134a6b823ff2fe7f3"
+    },
+    {
+      "path": "archive/data_dependent_tests/test_bias_variance_revision.py",
+      "bytes": 37899,
+      "sha256": "6048a14cb5ec1321f59028c32f14425d5bb99a956381e0dd1ecb14a123de4d9f"
+    },
+    {
+      "path": "archive/data_dependent_tests/test_followup_cluster.py",
+      "bytes": 8608,
+      "sha256": "f1d8154c74b81b4a8904dc5e3e2b0b32d3d42007cf8722f191390324483a46b2"
+    },
+    {
+      "path": "archive/paper-option2/analysis/c1_all_zero_fixed_20261018.json",
+      "bytes": 2740,
+      "sha256": "f549613646e2e6d89807da92322878b540b49a805288ec55b5bcf0254b28d31f"
+    },
+    {
+      "path": "archive/paper-option2/analysis/c1_primary_fixed_20261018.json",
+      "bytes": 2809,
+      "sha256": "f3b2721b0888b50cf253bed41e9281d921d3962f5e2d76a63e41967bcb105cbd"
+    },
+    {
+      "path": "archive/paper-option2/analysis/freeze_c1_all_zero_fixed_20261018.py",
+      "bytes": 3917,
+      "sha256": "af9dc289f73acb9166705bfc59e7194b8605c4b80044909cdbf266842dc7c07d"
+    },
+    {
+      "path": "archive/paper-option2/analysis/freeze_c1_primary_fixed_20261018.py",
+      "bytes": 5304,
+      "sha256": "712eb9d890f25ad7c34edac0a840162e3d271d7649a49ee619686508f74cb0e6"
+    },
+    {
+      "path": "archive/paper-option2/analysis/run_c1_all_zero_bootstrap_20261018.py",
+      "bytes": 29088,
+      "sha256": "034ddb72ba563fee7ed094fea94f251defc1bdb70464fb28319fdcd9ebab9244"
+    },
+    {
+      "path": "archive/paper-option2/analysis/run_c1_all_zero_bootstrap_parallel_20261018.py",
+      "bytes": 5536,
+      "sha256": "b0f63f499797e5259a5fce923fe385187d6d4e0868b58a027a7ceda8b7c6df77"
+    },
+    {
+      "path": "archive/paper-option2/analysis/run_c1_followup_20261018.py",
+      "bytes": 32841,
+      "sha256": "25c338499b0b16cec78099f2f6445b9558aa32c1eb3052f1ca1948c90ccd2e38"
+    },
+    {
+      "path": "archive/paper-option2/analysis/run_c1_primary_bootstrap_20261018.py",
+      "bytes": 29144,
+      "sha256": "32fd620f67423059a2037ed1538e4710ab5880b8e500d8841674807126d04e57"
+    },
+    {
+      "path": "archive/paper-option2/analysis/run_c1_primary_bootstrap_parallel_20261018.py",
+      "bytes": 6437,
+      "sha256": "7689ef30bb8189348bfe44dd5b932dc408003b30663346b9228a30c7bbd82f11"
+    },
+    {
+      "path": "archive/paper-option2/analysis/run_scale_weight_sensitivity.py",
+      "bytes": 25436,
+      "sha256": "8a5b5bdf51b3980a4d29e3e6d95633cdc4d52c0ce6fc2e31bfcf2f0e891826b4"
+    },
+    {
+      "path": "archive/paper-option2/analysis/sparse_zne_core_20261018.py",
+      "bytes": 29532,
+      "sha256": "78a83983595b34d1d4929cb68f082ed09a18e33419259011bd32bc942d0e0ac1"
+    },
+    {
+      "path": "archive/paper-option2/analysis/summarize_c1_all_zero_bootstrap_20261018.py",
+      "bytes": 36501,
+      "sha256": "a259d810aedc8de888fcf06654dcf39394f590d2568cc1eaf098c478645a9f99"
+    },
+    {
+      "path": "archive/paper-option2/analysis/summarize_c1_followup_20261018.py",
+      "bytes": 5397,
+      "sha256": "3274485442e63cd40c4a2083fe45c52c3ecfcdc49823e35fcb22e3093efaf5df"
+    },
+    {
+      "path": "archive/paper-option2/analysis/summarize_c1_primary_bootstrap_20261018.py",
+      "bytes": 36413,
+      "sha256": "8f4ba37e1d0e30ffe076bbdf706bc63dd718a0fbe5a61719f9cbc2a670277fbd"
+    },
+    {
+      "path": "archive/paper-option2/analysis/verify_c1_all_zero_bootstrap_20261018.py",
+      "bytes": 37441,
+      "sha256": "ba53d5a25d4e99d865837d14be4cc8faaa84a724ee09ed36c4175a191b181831"
+    },
+    {
+      "path": "archive/paper-option2/analysis/verify_c1_followup_20261018.py",
+      "bytes": 56748,
+      "sha256": "7b1a95801a14eb3ca54a182f3a299f0bf39218f78b3807b6ea4f5a32fdc774b0"
+    },
+    {
+      "path": "archive/paper-option2/analysis/verify_c1_primary_bootstrap_20261018.py",
+      "bytes": 55134,
+      "sha256": "8ab632e828e1d11cf6289ef7573e440f81ede21f058216921cd8d42394a4eb76"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_20261020/analyze_results.py",
+      "bytes": 5695,
+      "sha256": "5d7da910ab8bf94d3341fa1dafdccfa7bebc408f9222fc64feaf4064e5966fcf"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_20261020/campaign_20k.py",
+      "bytes": 11193,
+      "sha256": "078bcfc5712f12734a9aaaf8ce746c7b47f65c9aadbbd1660ba0f33148c8b975"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_20261020/config.json",
+      "bytes": 1283,
+      "sha256": "5650cf9ce805df1b34110dfe4818a81a2dbb99f037d235f77d8c5acaeabbccdd"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_20261020/run_experiment.py",
+      "bytes": 13977,
+      "sha256": "631e36bcc1ffc3cc947d07f7a7de1266b0bbe8ae42e016a4e0b02ac49c5bd936"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_20261020/vendor/__init__.py",
+      "bytes": 84,
+      "sha256": "def6c9999bbcd088b37eb15c47c4857e2c6685780cffa38f767f71f609142c9f"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_20261020/vendor/estimators.py",
+      "bytes": 11182,
+      "sha256": "65cb00d076c871ccb1cb63ab9dc05a2f9ed5c0cd8d589a4e5f5fa5d35097b993"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_20261020/vendor/folding.py",
+      "bytes": 3861,
+      "sha256": "438208ff61a0fb59202b3454d78d6c7db82cb302d0f7d15730b2ebd6c7aa4358"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_20261020/vendor/metrics.py",
+      "bytes": 10632,
+      "sha256": "83259721f73f0ec9143be08af0e8161bd10a2790ce1e1489e43341554f7275c1"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_20261020/vendor/reset_readout.py",
+      "bytes": 3358,
+      "sha256": "9571867ce4ad071bb4b0865486b3c74606ef00740fc5078b0737abea6866cc04"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_20261020/vendor/simulator_noisy_reset.py",
+      "bytes": 85872,
+      "sha256": "54907757808cbce68d9dbceabbd99b4c0efb1eb55bbefd0e64ac8fd7de4f7005"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_20261020/vendor/simulator_reference.py",
+      "bytes": 84627,
+      "sha256": "3e00444360affc759d419e71145f3728fcdb77eb98283107b31c9c174a15f170"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_20261020/verify_setup.py",
+      "bytes": 12043,
+      "sha256": "49972435513b7a219532afde933adf8c4907105cfef6cbf0d65b3697871873f8"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_refinement_20261020/analyze_results.py",
+      "bytes": 5695,
+      "sha256": "5d7da910ab8bf94d3341fa1dafdccfa7bebc408f9222fc64feaf4064e5966fcf"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_refinement_20261020/campaign_20k.py",
+      "bytes": 11196,
+      "sha256": "345f75b9549830f0d6f7847462aa7526b61d39a44e862fb37cb18a6e0fc02f72"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_refinement_20261020/config.json",
+      "bytes": 1282,
+      "sha256": "bd28538a172b151851447684819ff4b267656bb8d89d6f0d0484b08b2c853b2c"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_refinement_20261020/run_experiment.py",
+      "bytes": 13954,
+      "sha256": "158506c4b65693213468fce8f56c4c5ef7b19add54069404ac57e55f9c65a1eb"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_refinement_20261020/vendor/__init__.py",
+      "bytes": 84,
+      "sha256": "def6c9999bbcd088b37eb15c47c4857e2c6685780cffa38f767f71f609142c9f"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_refinement_20261020/vendor/estimators.py",
+      "bytes": 11182,
+      "sha256": "65cb00d076c871ccb1cb63ab9dc05a2f9ed5c0cd8d589a4e5f5fa5d35097b993"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_refinement_20261020/vendor/folding.py",
+      "bytes": 3861,
+      "sha256": "438208ff61a0fb59202b3454d78d6c7db82cb302d0f7d15730b2ebd6c7aa4358"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_refinement_20261020/vendor/metrics.py",
+      "bytes": 10632,
+      "sha256": "83259721f73f0ec9143be08af0e8161bd10a2790ce1e1489e43341554f7275c1"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_refinement_20261020/vendor/reset_readout.py",
+      "bytes": 3358,
+      "sha256": "9571867ce4ad071bb4b0865486b3c74606ef00740fc5078b0737abea6866cc04"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_refinement_20261020/vendor/simulator_noisy_reset.py",
+      "bytes": 85872,
+      "sha256": "54907757808cbce68d9dbceabbd99b4c0efb1eb55bbefd0e64ac8fd7de4f7005"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_refinement_20261020/vendor/simulator_reference.py",
+      "bytes": 84627,
+      "sha256": "3e00444360affc759d419e71145f3728fcdb77eb98283107b31c9c174a15f170"
+    },
+    {
+      "path": "archive/paper-option2/experiments/arithmetic_reset_readout_refinement_20261020/verify_setup.py",
+      "bytes": 12025,
+      "sha256": "3ed0246ef4b7a7cdef5c03feba9b674c743403725112867ac7459b061f74d231"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/configs/n119_a100_followup.json",
+      "bytes": 1078,
+      "sha256": "e6e331275b95506eda526a29ce7db2442581b937f0b09225c7c05526e28a4859"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/configs/n119_a13_matched.json",
+      "bytes": 1102,
+      "sha256": "1d5148b077ecaaea32ad1d5fedf5776352e26c2a7708d3d08fc30ac4fad73680"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/configs/n119_a16_augmented.json",
+      "bytes": 1039,
+      "sha256": "58ed5efaaadc0884c6630d6e29dcc7686a90cc71fcd970732ca466d58b910495"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/configs/n119_a16_matched.json",
+      "bytes": 1002,
+      "sha256": "7c97c107eaab02c6dd2c921bbf095832a53ac955b9a54cb4c171b12f86aeaf60"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/configs/n119_a50_matched.json",
+      "bytes": 1212,
+      "sha256": "960106c2c0b4655825e6c85c1e5220fdbf48616137dfc1b29c3a64599b79823d"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/environment-a100-driver.yml",
+      "bytes": 502,
+      "sha256": "87470dec142eedf6b94bb64b9a874918100e91e4b4187e2820a0e767bb5d7dec"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/environment-gpu-cuda13.yml",
+      "bytes": 267,
+      "sha256": "df9063fd4c6e2c6df2d5dd3b05417263edbcb7ff2c258446df91bc98401ed709"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/pyproject.toml",
+      "bytes": 466,
+      "sha256": "9e42df74c531d34f130479b1262104fdbb66163e10218ca262422000c747775a"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/scripts/build_matched_operation_caches.py",
+      "bytes": 6916,
+      "sha256": "405b1c1e7ac0a4c73e211a086e12328ee620905e60ae49123434efdb3b5f8d72"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/src/shor_qem/__init__.py",
+      "bytes": 79,
+      "sha256": "54380146a0b0a17dc1ca31de525300dad9f41dd6244e059f7eb99dcdc53d5e57"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/src/shor_qem/artifact_manifest.py",
+      "bytes": 3567,
+      "sha256": "2b07ff7b2390d834b23d5ad8d77c6c8dfce6ad3abb8f317e60e9a3cf074a900b"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/src/shor_qem/bias_variance_revision.py",
+      "bytes": 60218,
+      "sha256": "792445cfd99777c2e6eddb5dc781ec30c58b9dc8bf8650d931757d60a717c541"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/src/shor_qem/bootstrap_analysis.py",
+      "bytes": 38630,
+      "sha256": "2c294e148210f8ca1ae8d3ccf0a8c25b6e8e14e29cc2e2c1b2f5b3c52fbf0123"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/src/shor_qem/data.py",
+      "bytes": 13011,
+      "sha256": "6e6c0a9974c34f9b8632c8d0b482200a67ef2581f1e2fc9bc8585b85728f705f"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/src/shor_qem/environment_capture.py",
+      "bytes": 7719,
+      "sha256": "c77e1b7bd974227e5ee3aa9e6856e7f72e2f8670e7ac6e869252304751dffeeb"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/src/shor_qem/estimators.py",
+      "bytes": 11182,
+      "sha256": "65cb00d076c871ccb1cb63ab9dc05a2f9ed5c0cd8d589a4e5f5fa5d35097b993"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/src/shor_qem/folding.py",
+      "bytes": 3861,
+      "sha256": "438208ff61a0fb59202b3454d78d6c7db82cb302d0f7d15730b2ebd6c7aa4358"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/src/shor_qem/folding_pattern_analysis.py",
+      "bytes": 30353,
+      "sha256": "0393e77b6cb6067084a5281b1098e4be3986e6fb4b629bb430c876bcb52659bb"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/src/shor_qem/folding_pattern_model_analysis.py",
+      "bytes": 29650,
+      "sha256": "f50f3b2aec6debda7e502a1347a1d955d46a344faa700d48d205aa4087cf66c1"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/src/shor_qem/folding_pattern_simulator.py",
+      "bytes": 36952,
+      "sha256": "688e5bd700a26d369d1c9d90e0e6b21679c382a664f8f02808f5b45f88f3fde1"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/src/shor_qem/followup_cluster.py",
+      "bytes": 54354,
+      "sha256": "f21fd7b6c153f963f80ec3c39ebd82543cc1339d04949640d891e455e2e32d53"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/src/shor_qem/metrics.py",
+      "bytes": 10632,
+      "sha256": "83259721f73f0ec9143be08af0e8161bd10a2790ce1e1489e43341554f7275c1"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/src/shor_qem/simulator.py",
+      "bytes": 84627,
+      "sha256": "3e00444360affc759d419e71145f3728fcdb77eb98283107b31c9c174a15f170"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/tests/test_bias_variance_revision.py",
+      "bytes": 37899,
+      "sha256": "6048a14cb5ec1321f59028c32f14425d5bb99a956381e0dd1ecb14a123de4d9f"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/tests/test_bootstrap.py",
+      "bytes": 4341,
+      "sha256": "27e3bfd5844042607a189cf16fb79d6a4524d72e9ca835e05ded40dd3985eff4"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/tests/test_data.py",
+      "bytes": 885,
+      "sha256": "ac9bcfb1786baa15e0e33e83d8820607909e6f12a876dc124ece3353d5748529"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/tests/test_estimators.py",
+      "bytes": 4026,
+      "sha256": "e0a7c77f6864e5ca97703208e188f8f4222845e7778d6819ef5c0403e302a366"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/tests/test_folding_pattern_simulator.py",
+      "bytes": 10936,
+      "sha256": "addbaf86f05c1e9d6365aaa782a6f3b7be52bd854fa16b03baf4882be2dd321e"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/tests/test_followup_cluster.py",
+      "bytes": 8608,
+      "sha256": "f1d8154c74b81b4a8904dc5e3e2b0b32d3d42007cf8722f191390324483a46b2"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/tests/test_metrics.py",
+      "bytes": 6239,
+      "sha256": "33912fa25ed27a6e6e25e237d897ec9080a5dd3532be0d932a46cfae1a443c87"
+    },
+    {
+      "path": "archive/paper-option2/shor_error_mitigation/tests/test_simulator_source.py",
+      "bytes": 1920,
+      "sha256": "a4c5dfabd4b75ac5e318a8a8bcc346a31e27cc8fccb4def9d27fe8e2ae8ad644"
+    },
+    {
+      "path": "archive/paper-option2/supplements/s6_order_recovery_20261031/export_order_data.py",
+      "bytes": 21293,
+      "sha256": "962f1fe190b528851b5f5812b554f8d83e020888f5bfcb4d92b3faa74e6133ce"
+    },
+    {
+      "path": "archive/paper-option2/supplements/s6_order_recovery_20261031/verify_order_data.py",
+      "bytes": 18547,
+      "sha256": "e2b3390f172856182abe7478dd027f422acf0789a84fe11fad3e69a72c2e57e8"
+    },
+    {
+      "path": "configs/n119_a100_followup.json",
+      "bytes": 1078,
+      "sha256": "e6e331275b95506eda526a29ce7db2442581b937f0b09225c7c05526e28a4859"
+    },
+    {
+      "path": "configs/n119_a13_matched.json",
+      "bytes": 1102,
+      "sha256": "1d5148b077ecaaea32ad1d5fedf5776352e26c2a7708d3d08fc30ac4fad73680"
+    },
+    {
+      "path": "configs/n119_a16_augmented.json",
+      "bytes": 1039,
+      "sha256": "58ed5efaaadc0884c6630d6e29dcc7686a90cc71fcd970732ca466d58b910495"
+    },
+    {
+      "path": "configs/n119_a16_matched.json",
+      "bytes": 1002,
+      "sha256": "7c97c107eaab02c6dd2c921bbf095832a53ac955b9a54cb4c171b12f86aeaf60"
+    },
+    {
+      "path": "configs/n119_a50_matched.json",
+      "bytes": 1212,
+      "sha256": "960106c2c0b4655825e6c85c1e5220fdbf48616137dfc1b29c3a64599b79823d"
+    },
+    {
+      "path": "docs/CODE_AVAILABILITY.tex",
+      "bytes": 1990,
+      "sha256": "5d849a7069fa6a62ae10b3bd39fd204dd5c02986b335dea01ece792f4f94b05f"
+    },
+    {
+      "path": "docs/DATA_FORMAT.md",
+      "bytes": 7615,
+      "sha256": "39c8fdb4124f3c3eed91d1028932fbe84d19d43a142151db583f12f2b9c1b434"
+    },
+    {
+      "path": "docs/LICENSE_STATUS.txt",
+      "bytes": 951,
+      "sha256": "cafa3c65c19522a6790b0f0adb5c21a0c44df62e76f9d6b25be2129f17f2fe15"
+    },
+    {
+      "path": "docs/REPRODUCIBILITY.md",
+      "bytes": 11245,
+      "sha256": "ed7b6b4ccf6c7d60e7d7cf42aa198983da18583af0f3ecf577bda55e6eaa2569"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "bytes": 3019,
+      "sha256": "d4e76f649ab69503e79e810575f6e7e045f3a8b267e0fd94c7ac912f25a0f806"
+    },
+    {
+      "path": "environments/environment-a100-driver.yml",
+      "bytes": 502,
+      "sha256": "87470dec142eedf6b94bb64b9a874918100e91e4b4187e2820a0e767bb5d7dec"
+    },
+    {
+      "path": "environments/environment-gpu-cuda13.yml",
+      "bytes": 267,
+      "sha256": "df9063fd4c6e2c6df2d5dd3b05417263edbcb7ff2c258446df91bc98401ed709"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 758,
+      "sha256": "d00305a87bf17c31dcf205a43ef22ff4c6a706a2b69730e2a891235073f3436b"
+    },
+    {
+      "path": "requirements-reproduction.txt",
+      "bytes": 180,
+      "sha256": "746fe03b977118a70e16fd194b47a0ba86d4238d44095ea237e21a7c871e8f23"
+    },
+    {
+      "path": "scripts/build_matched_operation_caches.py",
+      "bytes": 6916,
+      "sha256": "405b1c1e7ac0a4c73e211a086e12328ee620905e60ae49123434efdb3b5f8d72"
+    },
+    {
+      "path": "scripts/make_synthetic_counts.py",
+      "bytes": 3162,
+      "sha256": "758c5ca89a45cc5a3d18f8203f0fd90b27aded4e036a34e139190fe35e10bd96"
+    },
+    {
+      "path": "scripts/verify_release.py",
+      "bytes": 985,
+      "sha256": "fa68358877c247b7a3fd39715306ef5c6371c32fe3572a25bc9517fde8780173"
+    },
+    {
+      "path": "scripts/verify_source_snapshot.py",
+      "bytes": 775,
+      "sha256": "4e866e871a9dc8a67150893422b0c5177237c25615fd3f78e0b6ff1388765c6c"
+    },
+    {
+      "path": "src/shor_qem/__init__.py",
+      "bytes": 79,
+      "sha256": "54380146a0b0a17dc1ca31de525300dad9f41dd6244e059f7eb99dcdc53d5e57"
+    },
+    {
+      "path": "src/shor_qem/artifact_manifest.py",
+      "bytes": 3567,
+      "sha256": "2b07ff7b2390d834b23d5ad8d77c6c8dfce6ad3abb8f317e60e9a3cf074a900b"
+    },
+    {
+      "path": "src/shor_qem/bias_variance_revision.py",
+      "bytes": 60218,
+      "sha256": "792445cfd99777c2e6eddb5dc781ec30c58b9dc8bf8650d931757d60a717c541"
+    },
+    {
+      "path": "src/shor_qem/bootstrap_analysis.py",
+      "bytes": 38630,
+      "sha256": "2c294e148210f8ca1ae8d3ccf0a8c25b6e8e14e29cc2e2c1b2f5b3c52fbf0123"
+    },
+    {
+      "path": "src/shor_qem/data.py",
+      "bytes": 13011,
+      "sha256": "6e6c0a9974c34f9b8632c8d0b482200a67ef2581f1e2fc9bc8585b85728f705f"
+    },
+    {
+      "path": "src/shor_qem/environment_capture.py",
+      "bytes": 7719,
+      "sha256": "c77e1b7bd974227e5ee3aa9e6856e7f72e2f8670e7ac6e869252304751dffeeb"
+    },
+    {
+      "path": "src/shor_qem/estimators.py",
+      "bytes": 11182,
+      "sha256": "65cb00d076c871ccb1cb63ab9dc05a2f9ed5c0cd8d589a4e5f5fa5d35097b993"
+    },
+    {
+      "path": "src/shor_qem/folding.py",
+      "bytes": 3861,
+      "sha256": "438208ff61a0fb59202b3454d78d6c7db82cb302d0f7d15730b2ebd6c7aa4358"
+    },
+    {
+      "path": "src/shor_qem/folding_pattern_analysis.py",
+      "bytes": 30353,
+      "sha256": "0393e77b6cb6067084a5281b1098e4be3986e6fb4b629bb430c876bcb52659bb"
+    },
+    {
+      "path": "src/shor_qem/folding_pattern_model_analysis.py",
+      "bytes": 29650,
+      "sha256": "f50f3b2aec6debda7e502a1347a1d955d46a344faa700d48d205aa4087cf66c1"
+    },
+    {
+      "path": "src/shor_qem/folding_pattern_simulator.py",
+      "bytes": 36952,
+      "sha256": "688e5bd700a26d369d1c9d90e0e6b21679c382a664f8f02808f5b45f88f3fde1"
+    },
+    {
+      "path": "src/shor_qem/followup_cluster.py",
+      "bytes": 54354,
+      "sha256": "f21fd7b6c153f963f80ec3c39ebd82543cc1339d04949640d891e455e2e32d53"
+    },
+    {
+      "path": "src/shor_qem/metrics.py",
+      "bytes": 10632,
+      "sha256": "83259721f73f0ec9143be08af0e8161bd10a2790ce1e1489e43341554f7275c1"
+    },
+    {
+      "path": "src/shor_qem/portable_c1.py",
+      "bytes": 27999,
+      "sha256": "ae1b86bdcffe6955d81e9659498b0376d77dd682874d3146cedf49427e60ce73"
+    },
+    {
+      "path": "src/shor_qem/simulator.py",
+      "bytes": 84627,
+      "sha256": "3e00444360affc759d419e71145f3728fcdb77eb98283107b31c9c174a15f170"
+    },
+    {
+      "path": "src/shor_qem/sparse_zne_core.py",
+      "bytes": 29532,
+      "sha256": "78a83983595b34d1d4929cb68f082ed09a18e33419259011bd32bc942d0e0ac1"
+    },
+    {
+      "path": "tests/test_bootstrap.py",
+      "bytes": 4341,
+      "sha256": "27e3bfd5844042607a189cf16fb79d6a4524d72e9ca835e05ded40dd3985eff4"
+    },
+    {
+      "path": "tests/test_data.py",
+      "bytes": 885,
+      "sha256": "ac9bcfb1786baa15e0e33e83d8820607909e6f12a876dc124ece3353d5748529"
+    },
+    {
+      "path": "tests/test_estimators.py",
+      "bytes": 4026,
+      "sha256": "e0a7c77f6864e5ca97703208e188f8f4222845e7778d6819ef5c0403e302a366"
+    },
+    {
+      "path": "tests/test_folding_cpu.py",
+      "bytes": 764,
+      "sha256": "b303d06a9f227884536d44e134afdbc16bdf415ca06c22f12bba194b149b50e3"
+    },
+    {
+      "path": "tests/test_metrics.py",
+      "bytes": 6239,
+      "sha256": "33912fa25ed27a6e6e25e237d897ec9080a5dd3532be0d932a46cfae1a443c87"
+    },
+    {
+      "path": "tests/test_portable_c1.py",
+      "bytes": 14656,
+      "sha256": "26e8782512e100b965c060ada98c58a46790959039921b898d38324520a8e160"
+    }
+  ]
+}

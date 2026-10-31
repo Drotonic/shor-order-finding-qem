@@ -1,0 +1,4 @@
+# Numerical version pins used for the CPU verification of this source release.
+# Historical final bootstrap also recorded Python 3.13.11; see docs.
+numpy==2.4.6
+matplotlib==3.10.9

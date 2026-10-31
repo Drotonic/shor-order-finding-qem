@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "experiment": "n119_a100_followup",
+  "instance_configs": [
+    "configs/n119_a13_matched.json",
+    "configs/n119_a50_matched.json",
+    "configs/n119_a16_matched.json"
+  ],
+  "existing_rates": [
+    0.00001,
+    0.00002,
+    0.00003,
+    0.00004,
+    0.00005,
+    0.0001,
+    0.0002,
+    0.0003,
+    0.0004,
+    0.0005,
+    0.0006
+  ],
+  "a16_additional_rates": [
+    0.00012,
+    0.00014,
+    0.00016,
+    0.00018
+  ],
+  "zne_lambdas": [
+    1.0,
+    1.1,
+    1.2,
+    1.4,
+    1.8,
+    2.2,
+    2.6,
+    3.0
+  ],
+  "existing_shots": 20000,
+  "target_baseline_shots": 160000,
+  "task_shots": 20000,
+  "additional_rate_zne_shots": 20000,
+  "baseline_modes": [
+    "raw",
+    "reset"
+  ],
+  "notes": {
+    "rate_units": "probability; 0.00012 corresponds to 0.012 percent",
+    "baseline_extension": "Existing lambda=1 records contribute shot IDs 0 through 19999; this run adds shot IDs 20000 through 159999.",
+    "additional_rates": "For a=16, lambda=1 is simulated to 160000 shots and each nontrivial ZNE scale is simulated for 20000 shots."
+  }
+}

@@ -1,0 +1,18 @@
+LICENSE STATUS: PENDING AUTHOR DECISION
+
+No software license was found in the source supplied for this repository.
+No new license, SPDX identifier, copyright assignment, or permission grant
+has been inferred or added during source packaging.
+
+This file is an informational status notice, not a software license.
+Repository access, including access to a private repository, does not itself
+grant permission to copy, modify, redistribute, sublicense, or otherwise reuse
+the code. Applicable rights remain with their respective rights holders.
+
+Before a public release or licensed redistribution, the authorized rights
+holders must choose and approve the license terms, confirm any third-party
+obligations, and add the actual approved license text and notices.
+
+Dependencies and third-party material retain their own applicable terms.
+This notice does not alter them and makes no claim that this source release
+has completed a third-party license audit.

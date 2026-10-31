@@ -1,0 +1,17 @@
+name: shor-qem-a100-driver
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - numpy==2.4.6
+      - scipy==1.17.1
+      - matplotlib==3.10.9
+      - qiskit==2.4.1
+      - tqdm==4.68.3
+      # Elice A100 images expose the NVIDIA driver but not CUDA headers.
+      # This extra supplies matching CUDA 12 runtime/header wheels while all
+      # scientific-package versions remain identical to the AWS environment.
+      - "cupy-cuda12x[ctk]==14.1.1"
+      - ipykernel==6.30.1

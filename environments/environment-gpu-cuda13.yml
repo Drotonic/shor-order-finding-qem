@@ -1,0 +1,14 @@
+name: shor-qem-gpu-cuda13
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - numpy==2.4.6
+      - scipy==1.17.1
+      - matplotlib==3.10.9
+      - qiskit==2.4.1
+      - tqdm==4.68.3
+      - cupy-cuda13x==14.1.1
+      - ipykernel==6.30.1
