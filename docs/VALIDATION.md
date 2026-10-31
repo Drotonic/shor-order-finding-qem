@@ -1,5 +1,9 @@
 # Release validation
 
+## Public availability: 2026-10-31
+
+The repository was made publicly accessible on 2026-10-31. The publication update changes repository visibility and documentation only; the scientific code remains at version `v0.1.1`. Earlier private-review snapshots and their tags are preserved. License selection remains pending.
+
 ## v0.1.1: executable workflow and native-count export
 
 The workflow documentation now links native shot generation, count packing, C1 reconstruction, bootstrap, and order decoding. `scripts/pack_simulator_counts.py` supplies the native-NPZ conversion step.
@@ -39,4 +43,4 @@ python scripts/verify_source_snapshot.py
 git rev-parse 'v0.1.0^{commit}'
 ```
 
-The release manifest lists source/configuration/documentation payload hashes; it is not a measurement-data manifest. The private repository and absent license must be reviewed before any public software-availability claim.
+The release manifest lists source/configuration/documentation payload hashes; it is not a measurement-data manifest. The repository is public, and the separate license decision is recorded in `LICENSE_STATUS.txt`.

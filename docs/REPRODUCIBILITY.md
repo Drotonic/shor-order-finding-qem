@@ -1,6 +1,6 @@
 # Experiment and analysis workflow
 
-The workflow is **circuit compilation → shot simulation → count parents → C1 reconstruction → paired bootstrap → metric tables and order-recovery evaluation**. The repository is currently private. The [README](../README.md) describes the commands and the [input-format guide](DATA_FORMAT.md) specifies the arrays passed between stages.
+The workflow is **circuit compilation → shot simulation → count parents → C1 reconstruction → paired bootstrap → metric tables and order-recovery evaluation**. The repository is publicly accessible. The [README](../README.md) describes the commands and the [input-format guide](DATA_FORMAT.md) specifies the arrays passed between stages.
 
 ## Study settings
 

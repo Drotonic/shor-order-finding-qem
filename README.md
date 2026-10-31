@@ -107,4 +107,4 @@ git rev-parse HEAD
 
 `SOURCE_MANIFEST.csv` records the original source hashes, and `RELEASE_MANIFEST.json` records the current package contents. See [Validation](docs/VALIDATION.md) for the checks performed.
 
-Repository: <https://github.com/Drotonic/shor-order-finding-qem> — private review, version `v0.1.1`. [License selection](docs/LICENSE_STATUS.txt) is pending.
+Repository: <https://github.com/Drotonic/shor-order-finding-qem> — publicly accessible, code version `v0.1.1`. [License selection](docs/LICENSE_STATUS.txt) is pending.

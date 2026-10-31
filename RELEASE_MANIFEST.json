@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "repository": "https://github.com/Drotonic/shor-order-finding-qem",
   "visibility_at_release": "private",
+  "repository_visibility_at_manifest_build": "public",
   "scope": "source-only N119 study code; no measurement data, figures, credentials or active campaign state",
   "license_status": "pending author decision; no license grant inferred",
   "scientific_profile": {
@@ -15,7 +16,7 @@
   },
   "source_snapshot_copies": 103,
   "payload_file_count": 122,
-  "payload_bytes": 2025639,
+  "payload_bytes": 2025952,
   "validation_report": "docs/VALIDATION.md",
   "inventory_notes": [
     "Payload hashes cover the source, configuration, tests, and documentation listed below.",
@@ -30,8 +31,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7644,
-      "sha256": "7348f6be1bb66ecf9ceb72aa3d3dcbeab30028c935e03995b0c2c4497d3d505d"
+      "bytes": 7654,
+      "sha256": "de810bbcaf4ab60c1a3a59b1ae4c693dd803698357e2782dc450bffd2af733ec"
     },
     {
       "path": "SOURCE_MANIFEST.csv",
@@ -445,8 +446,8 @@
     },
     {
       "path": "docs/CODE_AVAILABILITY.tex",
-      "bytes": 405,
-      "sha256": "6057fe2b03292f4bffb3ac4d734bc523cd71a0804c332a58365408b23e48826c"
+      "bytes": 395,
+      "sha256": "751274778c345c08938451f840f685a75d89d925f4413710a2b4805ce515ca5e"
     },
     {
       "path": "docs/DATA_FORMAT.md",
@@ -460,8 +461,8 @@
     },
     {
       "path": "docs/REPRODUCIBILITY.md",
-      "bytes": 10742,
-      "sha256": "7f0fad829c996e3b5761770a3ed20323adc32c71e7d40ad4231168e80760f046"
+      "bytes": 10744,
+      "sha256": "34582faf90a96bc6c11ed3c5eb47cde057a9dc33162eed3e7c7dc77c171a7e16"
     },
     {
       "path": "docs/RUNNING_EXPERIMENT.md",
@@ -470,8 +471,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 4342,
-      "sha256": "70c9c0a00cad6c66cea76f089c75cf765052c26c2caa06b0352f5575d8519613"
+      "bytes": 4653,
+      "sha256": "87e290bbd71cac0e9264ebb49b5397df6b367ed190af04d2f1c03e8b27102644"
     },
     {
       "path": "environments/environment-a100-driver.yml",
