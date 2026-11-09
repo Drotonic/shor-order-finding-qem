@@ -1,5 +1,41 @@
 # Release validation
 
+## v0.2.0: N,a automation and opt-in IBM hardware workflow
+
+Validated on 2026-11-10 in a separate Python3.12 environment with
+Qiskit2.4.1, IBM Runtime0.51.0, Aer0.18.2 and NumPy2.5.4.
+
+- **266 tests passed**, including the complete existing regression suite.
+- All **103 original scientific-source copies** still match their frozen SHA256s.
+- Actual CPU arithmetic tests cover coherent controlled multiplication, all QPE
+  rounds, classical feedforward, matched Raw/Reset routing, and native CX/CZ
+  folding. Full N15 circuits also passed local ideal-simulation checks.
+- A whole-flow CPU test builds actual N3 arithmetic circuits, executes the local
+  Sampler, collects counts, computes all six routes and resumes without another
+  submission. Runtime calls use local Aer or explicit mocks, never an IBM account.
+- Lifecycle tests cover per-batch resume, corrupted or missing checkpoints,
+  phase-bit ordering, immutable configurations, source hashes, equal-shot job
+  grouping, execution caps, saved submission intent/IDs, ambiguous recovery,
+  offline-plan rejection, result collection, secure-prompt fallback rejection,
+  and analysis-output checksum validation.
+- The flexible analysis interface exactly reproduces the old eight-scale C1
+  reconstruction in the same test environment. Four-scale/small-shot examples
+  are separate new runs, not replacements for published N119 results.
+- Editable installation, dependency consistency (`pip check`), installed CLI
+  planning, an offline N15 compilation, and a six-route CPU analysis smoke test
+  completed. The source scan found no high-confidence token/private-key patterns
+  or personal home paths in the release payload.
+
+No new production GPU campaign or real QPU job was executed for this validation.
+GPU execution wraps the preserved trajectory engine; fresh GPU execution of the
+new wrapper remains to be validated on the user's selected machine. Hardware
+availability/calibration, actual queue behavior and physical mitigation quality
+are determined only when the user explicitly submits an experiment.
+
+Upstream deprecation warnings for `Gate.control` and `SamplerV2` are retained.
+The hardware dependency is pinned to tested Runtime0.51.x; a future Runtime
+migration should rerun the local circuit and job-lifecycle tests.
+
 ## v0.1.2: public measurement and bootstrap data
 
 The release adds seven scientific-data ZIP assets (1,247,276,792 bytes total), a download index and SHA256 checksums. Extracted data contain 42,758 files, including the two publication manifests and README files. No new trajectories, fits or bootstrap draws were generated for packaging.

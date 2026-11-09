@@ -4,6 +4,31 @@ Code for **“Mitigating errors of a polynomial-depth quantum circuit: quantum o
 
 The calculation starts with noisy order-finding shots, reconstructs the output distribution using arithmetic-register Reset and zero-noise extrapolation (ZNE), and evaluates TVD, the normalized peak-background gap, and exact-order recovery.
 
+## Automatic N,a workflow
+
+Version 0.2.0 adds a single command interface for new instances, alongside the
+unchanged recorded-data workflow below:
+
+```bash
+# Inspect a simulation plan (no GPU execution):
+shor-qem plan --N 15 --a 4 --rates-percent 0.001 0.005 0.01
+
+# Compile, generate GPU shots, checkpoint, and analyze:
+shor-qem simulate --N 15 --a 4 --rates-percent 0.001 0.005 0.01 \
+  --output-dir results/n15_a4 --execute
+
+# Build real IBM circuits, securely request credentials, submit and analyze:
+shor-qem ibm --N 15 --a 4 --backend ibm_phoenix \
+  --shots 10000 --baseline-shots 10000 --folding-patterns 10 \
+  --output-dir results/ibm_n15_a4 --prompt-token --execute --wait
+```
+
+The IBM command requires `.[hardware]`; simulation requires a matching GPU CUDA
+extra. IBM execution is explicitly opt-in and can consume account allocation.
+Counts, job IDs and analysis outputs are saved locally; API keys are not saved.
+The [automation guide](docs/AUTOMATION.md) covers installation, compile-only
+inspection, restart/recovery, shot budgets and the hardware folding convention.
+
 ## From shots to results
 
 | Step | Code | Input → output |
@@ -125,4 +150,4 @@ git rev-parse HEAD
 
 `SOURCE_MANIFEST.csv` records the original source hashes, and `RELEASE_MANIFEST.json` records the current package contents. See [Validation](docs/VALIDATION.md) for the checks performed.
 
-Repository: <https://github.com/Drotonic/shor-order-finding-qem> — publicly accessible, code and data release `v0.1.2`. [License selection](docs/LICENSE_STATUS.txt) is pending.
+Repository: <https://github.com/Drotonic/shor-order-finding-qem> — publicly accessible. Automation code: `v0.2.0`; recorded study data: `v0.1.2`. [License selection](docs/LICENSE_STATUS.txt) is pending.

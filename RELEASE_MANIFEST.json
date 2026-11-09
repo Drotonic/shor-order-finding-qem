@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.1.2",
+  "version": "0.2.0",
   "repository": "https://github.com/Drotonic/shor-order-finding-qem",
   "visibility_at_release": "public",
   "repository_visibility_at_manifest_build": "public",
-  "scope": "N119 study source and data-access documentation; measurement data and bootstrap caches are separately checksummed v0.1.2 release assets; no credentials or active campaign state",
+  "scope": "Study source/data access plus opt-in N,a simulator and IBM hardware workflows; no credentials or active run state",
   "license_status": "pending author decision; no license grant inferred",
   "scientific_profile": {
     "reconstruction": "C1",
@@ -15,24 +15,24 @@
     "primary_budget": "equal circuit shots"
   },
   "source_snapshot_copies": 103,
-  "payload_file_count": 125,
-  "payload_bytes": 2072950,
+  "payload_file_count": 136,
+  "payload_bytes": 2258214,
   "validation_report": "docs/VALIDATION.md",
   "inventory_notes": [
-    "Payload hashes cover the source, configuration, tests, and documentation listed below.",
-    "The inventory excludes this manifest itself and .git metadata.",
-    "Version v0.1.2 adds public measurement/bootstrap data assets and a reader that reproduces the recorded summary tables."
+    "Payload hashes cover source, configuration, tests and documentation listed below.",
+    "The inventory excludes this manifest itself, .git metadata and ignored generated run artifacts.",
+    "v0.2.0 adds N,a-driven execution and analysis; recorded measurement/bootstrap assets remain on release v0.1.2."
   ],
   "files": [
     {
       "path": ".gitignore",
-      "bytes": 915,
-      "sha256": "f96ae5ccecf0d94a47e47ae9a40f5fba674e70c8f2708ca840eef6b888575037"
+      "bytes": 960,
+      "sha256": "bc5ae857bed608ca9485fededdeab56b264565913e980797b3c4d75a88b3f1af"
     },
     {
       "path": "README.md",
-      "bytes": 8990,
-      "sha256": "733556d05401d132d0ac027b2bf88ad307483ed0d905c2f39c5ceccede279ba0"
+      "bytes": 10100,
+      "sha256": "db584578c39264d972db0b91b9ec2803fb7f03384577b2ff56800422e6fd1a6f"
     },
     {
       "path": "SOURCE_MANIFEST.csv",
@@ -445,6 +445,11 @@
       "sha256": "960106c2c0b4655825e6c85c1e5220fdbf48616137dfc1b29c3a64599b79823d"
     },
     {
+      "path": "docs/AUTOMATION.md",
+      "bytes": 10528,
+      "sha256": "c5fbf79067072d980e18a9e54cefd9915da0efccb757d4fbf118ff1905a0cbb0"
+    },
+    {
       "path": "docs/CODE_AVAILABILITY.tex",
       "bytes": 730,
       "sha256": "175f919e6d36d62da8e6db326dc54724db281f8dec0c7c25bda7a7e32cf17294"
@@ -476,8 +481,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 6993,
-      "sha256": "8b2327ba551822306b60181f970dbe92f4e2c31c3fb623d26793a45bf78184d7"
+      "bytes": 9281,
+      "sha256": "2188dd4ca8465f836cd771c2b1342934a4a013cc560de652f19f0ef5b4827216"
     },
     {
       "path": "environments/environment-a100-driver.yml",
@@ -491,8 +496,8 @@
     },
     {
       "path": "pyproject.toml",
-      "bytes": 758,
-      "sha256": "52a22fea5e96f16ca7770ce711eb5232a0655ff64eb43691beed96003640da30"
+      "bytes": 953,
+      "sha256": "0ab1523ea78c8a1ebe6b7f947891bbff85e4990d549d9574ab46660ba6434be0"
     },
     {
       "path": "requirements-reproduction.txt",
@@ -503,6 +508,11 @@
       "path": "scripts/build_matched_operation_caches.py",
       "bytes": 6916,
       "sha256": "405b1c1e7ac0a4c73e211a086e12328ee620905e60ae49123434efdb3b5f8d72"
+    },
+    {
+      "path": "scripts/build_release_manifest.py",
+      "bytes": 1768,
+      "sha256": "7016ce44db0db8e627a4425845d9a24c4038927b6ffcca349ed570d258370533"
     },
     {
       "path": "scripts/make_synthetic_counts.py",
@@ -590,6 +600,16 @@
       "sha256": "f21fd7b6c153f963f80ec3c39ebd82543cc1339d04949640d891e455e2e32d53"
     },
     {
+      "path": "src/shor_qem/hardware_circuits.py",
+      "bytes": 22691,
+      "sha256": "ae3727846b2e2dd7514ccdcedf6c9ba2da93aec6b79e82fd0cfa224fcbf9aef2"
+    },
+    {
+      "path": "src/shor_qem/ibm_runtime.py",
+      "bytes": 38021,
+      "sha256": "7e60463a02a807c81c65e2b7126d5991324fc3c4d136f0ea4bb3a56f692bb62d"
+    },
+    {
       "path": "src/shor_qem/metrics.py",
       "bytes": 10632,
       "sha256": "83259721f73f0ec9143be08af0e8161bd10a2790ce1e1489e43341554f7275c1"
@@ -600,6 +620,11 @@
       "sha256": "ae1b86bdcffe6955d81e9659498b0376d77dd682874d3146cedf49427e60ce73"
     },
     {
+      "path": "src/shor_qem/simulation_workflow.py",
+      "bytes": 30284,
+      "sha256": "40746a48eb86634c2d18021f0c457a376e514590dc6dc4a84dd4c1dce7f76acf"
+    },
+    {
       "path": "src/shor_qem/simulator.py",
       "bytes": 84627,
       "sha256": "3e00444360affc759d419e71145f3728fcdb77eb98283107b31c9c174a15f170"
@@ -608,6 +633,11 @@
       "path": "src/shor_qem/sparse_zne_core.py",
       "bytes": 29532,
       "sha256": "78a83983595b34d1d4929cb68f082ed09a18e33419259011bd32bc942d0e0ac1"
+    },
+    {
+      "path": "src/shor_qem/workflow.py",
+      "bytes": 19366,
+      "sha256": "86c6cfc6ce88e260f95f1c939e1ff87c0cc8049fd7594560552bbf5e18c3c826"
     },
     {
       "path": "tests/test_bootstrap.py",
@@ -630,6 +660,16 @@
       "sha256": "b303d06a9f227884536d44e134afdbc16bdf415ca06c22f12bba194b149b50e3"
     },
     {
+      "path": "tests/test_hardware_circuits.py",
+      "bytes": 14272,
+      "sha256": "bf5309b5f75d36bfd435ce61fb562b1d73f47b97d077433ca63da6dbdaf772a5"
+    },
+    {
+      "path": "tests/test_ibm_runtime.py",
+      "bytes": 22382,
+      "sha256": "bc37ddb9765cfd9c9e7125403c6010d7cdb5716cdcc3e22cb7f6a37d5cf34a0f"
+    },
+    {
       "path": "tests/test_metrics.py",
       "bytes": 6239,
       "sha256": "33912fa25ed27a6e6e25e237d897ec9080a5dd3532be0d932a46cfae1a443c87"
@@ -648,6 +688,21 @@
       "path": "tests/test_published_results.py",
       "bytes": 9285,
       "sha256": "541bde366e6fac034fdb35ec82fe609731514607605f815e401d6f4e575630c3"
+    },
+    {
+      "path": "tests/test_simulation_workflow.py",
+      "bytes": 13587,
+      "sha256": "3423922c182555d6eebe5040e6b027866b6ff29a20134689c7a2a8bc8cb5802c"
+    },
+    {
+      "path": "tests/test_workflow.py",
+      "bytes": 6424,
+      "sha256": "e91732cb6bfbd8fd125bc3bc1198eb296625cd2c21a861f021ff64b0737f23bb"
+    },
+    {
+      "path": "tests/test_workflow_e2e.py",
+      "bytes": 2303,
+      "sha256": "ec9ef53b9aa490afe0531274dc1a8a57a988fdc36286c1a46d17984a00baf80c"
     }
   ]
 }

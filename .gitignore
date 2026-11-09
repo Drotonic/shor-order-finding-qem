@@ -27,6 +27,9 @@ demo-output/
 *.pkl
 *.pkl.*
 *.pickle
+*.qpy
+**/jobs.json
+**/submission_ledger.json
 *.h5
 *.hdf5
 
