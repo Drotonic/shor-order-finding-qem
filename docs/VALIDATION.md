@@ -1,5 +1,33 @@
 # Release validation
 
+## v0.2.1: unified simulation and hardware data release
+
+Release v0.2.1 republishes the nine recorded-data ZIPs under one release tag.
+The seven simulation ZIPs are byte-identical to their v0.1.2 assets, and
+`shor-hardware-n3-a2-ibm_aachen.zip` and
+`shor-hardware-n3-a2-ibm_boston.zip` are byte-identical to their v0.2.0
+assets.  No trajectories, QPU jobs, fits, probability reconstructions or
+bootstrap draws were generated for this consolidation.
+
+The full CPU suite passed **269 tests** for the v0.2.1 package state.
+
+- `release_assets.json` is the unified nine-ZIP catalogue, and
+  `SHA256SUMS-all.txt` checks all nine archives.
+- The historical `dataset_assets.json` and `SHA256SUMS.txt` remain unchanged
+  and simulation-only.  Their omission of the two hardware ZIPs is intentional.
+- The seven simulation archives were designed to merge below one
+  `shor-paper-data/` root.  The two hardware archives contain matching internal
+  filenames and must be extracted into separate `ibm_aachen/` and `ibm_boston/`
+  directories.
+- Their acquired records and fixed analysis outputs are distributed as
+  recorded.
+
+The v0.2.0 local/mock lifecycle validation remains the applicable software
+check for the opt-in IBM workflow.  It did not replay these two historical QPU
+executions end to end, and v0.2.1 does not add such a claim.  Fresh hardware
+submission remains a new experiment subject to credentials, allocation, queue
+state and calibration.
+
 ## v0.2.0: N,a automation and opt-in IBM hardware workflow
 
 Validated on 2026-11-10 in a separate Python3.12 environment with

@@ -6,8 +6,8 @@ The calculation starts with noisy order-finding shots, reconstructs the output d
 
 ## Automatic N,a workflow
 
-Version 0.2.0 adds a single command interface for new instances, alongside the
-unchanged recorded-data workflow below:
+Version 0.2.1 retains the single-command interface introduced in v0.2.0 for new
+instances, alongside the unchanged recorded-data workflow below:
 
 ```bash
 # Inspect a simulation plan (no GPU execution):
@@ -69,25 +69,84 @@ At `p2=0.01%`, the saved shot records gave the following results under the setti
 
 These values were read from the final all-zero-ridge `primary_rate_results.csv` and checked against the saved parent distributions. Reconstructing the three saved count inputs with `portable_c1` reproduced all four models' vectors and TVD/gap values exactly in the tested environment. The [source record](docs/REPRODUCIBILITY.md#recorded-results) identifies the original files and hashes.
 
-The [v0.1.2 data release](https://github.com/Drotonic/shor-order-finding-qem/releases/tag/v0.1.2) provides the original simulator measurement records, analysis-ready count parents, and completed bootstrap caches. The table describes that recorded run; newly generated shots are another sample of the specified stochastic model.
+The [v0.2.1 release](https://github.com/Drotonic/shor-order-finding-qem/releases/tag/v0.2.1)
+provides the original simulator measurement records, analysis-ready count
+parents, and completed bootstrap caches, together with two recorded N=3
+hardware-data packages.  Its seven simulation ZIPs are byte-identical to the
+v0.1.2 assets, and its two hardware ZIPs are byte-identical to the v0.2.0
+assets.  The table above describes the recorded simulation run; newly generated
+shots are another sample of the specified stochastic model.
 
 ## Download the recorded data and reproduce the tables
 
-The release includes the 37-condition N119 shot data, all 40 TVD/gap bootstrap caches (37 equal-shot and three gate-matched), all 37 success-probability caches, and the 33 completed reset-readout records. Each bootstrap condition has 10,000 replicates and its complete batch checkpoints. Download and extract the seven ZIP assets into a common directory:
+The unified v0.2.1 release contains nine ZIP assets.  The seven legacy
+simulation ZIPs include the 37-condition N119 shot data, all 40 TVD/gap
+bootstrap caches (37 equal-shot and three gate-matched), all 37
+success-probability caches, and the 33 completed reset-readout records.  Each
+bootstrap condition has 10,000 replicates and its complete batch checkpoints.
+The two additional ZIPs contain the recorded N=3 hardware datasets for
+`ibm_aachen` and `ibm_boston`.
+
+Download the nine ZIPs and both generations of release metadata, then verify
+all nine archives with the unified checksum file:
 
 ```bash
-gh release download v0.1.2 --repo Drotonic/shor-order-finding-qem --pattern 'shor-*.zip' --pattern SHA256SUMS.txt --pattern dataset_assets.json --dir downloads
-(cd downloads && sha256sum -c SHA256SUMS.txt)
-for archive in downloads/shor-*.zip; do unzip -n "$archive" -d data; done
+gh release download v0.2.1 --repo Drotonic/shor-order-finding-qem \
+  --pattern 'shor-*.zip' --pattern release_assets.json \
+  --pattern SHA256SUMS-all.txt --pattern dataset_assets.json \
+  --pattern SHA256SUMS.txt --dir downloads
+(cd downloads && sha256sum -c SHA256SUMS-all.txt)
 ```
+
+The seven simulation archives have disjoint members below the same
+`shor-paper-data/` root and must be merged into one extraction directory:
+
+```bash
+mkdir -p data/simulation
+for archive in \
+  downloads/shor-measurement-records.zip \
+  downloads/shor-bootstrap-equal-shot-n119_a13.zip \
+  downloads/shor-bootstrap-equal-shot-n119_a16.zip \
+  downloads/shor-bootstrap-equal-shot-n119_a50.zip \
+  downloads/shor-bootstrap-gate-matched.zip \
+  downloads/shor-bootstrap-order-success.zip \
+  downloads/shor-data-index.zip; do
+  unzip -n "$archive" -d data/simulation
+done
+```
+
+The two hardware archives contain the same internal filenames and therefore
+must **not** be merged with each other.  Extract each into its own device
+directory:
+
+```bash
+mkdir -p data/hardware/ibm_aachen data/hardware/ibm_boston
+unzip -n downloads/shor-hardware-n3-a2-ibm_aachen.zip \
+  -d data/hardware/ibm_aachen
+unzip -n downloads/shor-hardware-n3-a2-ibm_boston.zip \
+  -d data/hardware/ibm_boston
+```
+
+`release_assets.json` and `SHA256SUMS-all.txt` are the v0.2.1 catalogue and
+checksums for all nine ZIPs.  The retained `dataset_assets.json` and
+`SHA256SUMS.txt` are the historical v0.1.2 simulation-only index and checksums;
+they intentionally do not list the hardware archives.
 
 After installing the package below, reduce the saved replicate arrays directly to the reported tables:
 
 ```bash
-python scripts/reproduce_published_results.py --data-root data/shor-paper-data --output-dir results/recorded-tables
+python scripts/reproduce_published_results.py \
+  --data-root data/simulation/shor-paper-data \
+  --output-dir results/recorded-tables
 ```
 
-The [data guide](docs/DATA_AVAILABILITY.md) maps each archive to its contents, explains the checksum manifests, and connects the recorded counts to fresh reconstruction and resampling. These records come from the study's stochastic shot simulator, not a QPU hardware run.
+The [data guide](docs/DATA_AVAILABILITY.md) maps each archive to its contents,
+explains the two generations of checksum manifests, and connects the recorded
+simulation counts to reconstruction and resampling.  The seven simulation
+archives come from the study's stochastic shot simulator.  The two hardware
+archives contain QPU records and fixed analysis products; they are provided for
+data inspection and figure reproduction, not as evidence that the current
+automation scripts replay those historical hardware executions end to end.
 
 ## Install
 
@@ -150,4 +209,7 @@ git rev-parse HEAD
 
 `SOURCE_MANIFEST.csv` records the original source hashes, and `RELEASE_MANIFEST.json` records the current package contents. See [Validation](docs/VALIDATION.md) for the checks performed.
 
-Repository: <https://github.com/Drotonic/shor-order-finding-qem> — publicly accessible. Automation code: `v0.2.0`; recorded study data: `v0.1.2`. [License selection](docs/LICENSE_STATUS.txt) is pending.
+Repository: <https://github.com/Drotonic/shor-order-finding-qem> — publicly
+accessible.  Release `v0.2.1` unifies the current automation/documentation, the
+unchanged seven simulation archives from v0.1.2, and the unchanged two hardware
+archives from v0.2.0.  [License selection](docs/LICENSE_STATUS.txt) is pending.

@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.2.0",
+  "version": "0.2.1",
   "repository": "https://github.com/Drotonic/shor-order-finding-qem",
   "visibility_at_release": "public",
   "repository_visibility_at_manifest_build": "public",
-  "scope": "Study source/data access plus opt-in N,a simulator and IBM hardware workflows; no credentials or active run state",
+  "scope": "Unified study code and data access: preserved scientific sources, opt-in N,a workflows, seven unchanged simulation archives from v0.1.2 and two unchanged hardware archives from v0.2.0; no credentials or active run state",
   "license_status": "pending author decision; no license grant inferred",
   "scientific_profile": {
     "reconstruction": "C1",
@@ -15,13 +15,15 @@
     "primary_budget": "equal circuit shots"
   },
   "source_snapshot_copies": 103,
-  "payload_file_count": 136,
-  "payload_bytes": 2258214,
+  "payload_file_count": 138,
+  "payload_bytes": 2268529,
   "validation_report": "docs/VALIDATION.md",
   "inventory_notes": [
     "Payload hashes cover source, configuration, tests and documentation listed below.",
     "The inventory excludes this manifest itself, .git metadata and ignored generated run artifacts.",
-    "v0.2.0 adds N,a-driven execution and analysis; recorded measurement/bootstrap assets remain on release v0.1.2."
+    "v0.2.1 provides a unified code/data release; seven simulation ZIP assets retain their v0.1.2 bytes and two hardware ZIP assets retain their v0.2.0 bytes.",
+    "Scientific data ZIP assets are inventoried by their separate download/checksum manifests, not by this source-payload inventory.",
+    "Only package-version metadata changed in the live initializer; its original bytes and source identity remain preserved under archive/original_package/ and SOURCE_MANIFEST.csv."
   ],
   "files": [
     {
@@ -31,13 +33,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 10100,
-      "sha256": "db584578c39264d972db0b91b9ec2803fb7f03384577b2ff56800422e6fd1a6f"
+      "bytes": 12223,
+      "sha256": "7dfcc802bdfcb86d25452908c467f9c78123ff77d893cf91529c9bad73e05233"
     },
     {
       "path": "SOURCE_MANIFEST.csv",
-      "bytes": 24266,
-      "sha256": "67eb2683ee5307952e7838861579ac35b4fd6899ef0e86f134a6b823ff2fe7f3"
+      "bytes": 24291,
+      "sha256": "4eaf15f44a4200a8f8b683460c6ee418a209f9b8cbd572fb7f22c7edb614320c"
     },
     {
       "path": "archive/data_dependent_tests/test_bias_variance_revision.py",
@@ -48,6 +50,11 @@
       "path": "archive/data_dependent_tests/test_followup_cluster.py",
       "bytes": 8608,
       "sha256": "f1d8154c74b81b4a8904dc5e3e2b0b32d3d42007cf8722f191390324483a46b2"
+    },
+    {
+      "path": "archive/original_package/src/shor_qem/__init__.py",
+      "bytes": 79,
+      "sha256": "54380146a0b0a17dc1ca31de525300dad9f41dd6244e059f7eb99dcdc53d5e57"
     },
     {
       "path": "archive/paper-option2/analysis/c1_all_zero_fixed_20261018.json",
@@ -451,13 +458,13 @@
     },
     {
       "path": "docs/CODE_AVAILABILITY.tex",
-      "bytes": 730,
-      "sha256": "175f919e6d36d62da8e6db326dc54724db281f8dec0c7c25bda7a7e32cf17294"
+      "bytes": 1264,
+      "sha256": "f544a9e2314d7d5990cf9dfd988be27e721bfcda4d1229c32de6d878f2d98fc2"
     },
     {
       "path": "docs/DATA_AVAILABILITY.md",
-      "bytes": 6232,
-      "sha256": "2f4abf49fc4a05f05b0859770984831242dac40f6296caedcac964b1b76f71a1"
+      "bytes": 9017,
+      "sha256": "56555ffc5dce03d2960b9f989c0b804b6cd2101193ad8a340692adb1cc7816b4"
     },
     {
       "path": "docs/DATA_FORMAT.md",
@@ -481,8 +488,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 9281,
-      "sha256": "2188dd4ca8465f836cd771c2b1342934a4a013cc560de652f19f0ef5b4827216"
+      "bytes": 10728,
+      "sha256": "129dceadc2bfce6519d708bedc69cccb86ef9a63a786968453fa2effe61eadb7"
     },
     {
       "path": "environments/environment-a100-driver.yml",
@@ -497,7 +504,7 @@
     {
       "path": "pyproject.toml",
       "bytes": 953,
-      "sha256": "0ab1523ea78c8a1ebe6b7f947891bbff85e4990d549d9574ab46660ba6434be0"
+      "sha256": "b54bb36292258f6f102976d3dfadb888a1159bd00475dd63631b077b971f4374"
     },
     {
       "path": "requirements-reproduction.txt",
@@ -511,8 +518,8 @@
     },
     {
       "path": "scripts/build_release_manifest.py",
-      "bytes": 1768,
-      "sha256": "7016ce44db0db8e627a4425845d9a24c4038927b6ffcca349ed570d258370533"
+      "bytes": 2243,
+      "sha256": "8fcae6a01eb0fc29041181f39eaf47eacd837f0fe988bc664f71553838f66619"
     },
     {
       "path": "scripts/make_synthetic_counts.py",
@@ -542,7 +549,7 @@
     {
       "path": "src/shor_qem/__init__.py",
       "bytes": 79,
-      "sha256": "54380146a0b0a17dc1ca31de525300dad9f41dd6244e059f7eb99dcdc53d5e57"
+      "sha256": "99d6a2d7d380fb2678e4a6d6c1b4bddcc33e5ade34078398a47aa7a9e07bdec1"
     },
     {
       "path": "src/shor_qem/artifact_manifest.py",
@@ -678,6 +685,11 @@
       "path": "tests/test_pack_simulator_counts.py",
       "bytes": 8929,
       "sha256": "a6db7da55484dea3ff7fe4da2576f6d99e2cb028b390bee8303768c30dcd7db0"
+    },
+    {
+      "path": "tests/test_package_version.py",
+      "bytes": 2847,
+      "sha256": "d8a5f445939291118e363406db71fdf9f614e8266a134e109a3e783f649f88e8"
     },
     {
       "path": "tests/test_portable_c1.py",
